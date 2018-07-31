@@ -25,7 +25,7 @@
 	</form>
 	<p><a href="index.php">Go back to the index page:</a></p>
 	
-	<?php
+<?php
 $servername = "localhost";
 $username = "root";
 $password = "";
