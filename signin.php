@@ -30,7 +30,7 @@ if(!empty($_POST))
 		$conn->close();
 	}
 	else{
-		echo 'Error: Please Enter info.';
+		echo 'Error: Please Enter Info.';
 	}
 }
 ?>
