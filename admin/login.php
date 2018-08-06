@@ -1,10 +1,10 @@
-<?php require('connection.php'); ?>
+<?php require('../connection.php'); ?>
 <!doctype html>
 <html>
 
 <head>
 	<meta charset="utf-8">
-	<title>Sign in Page</title>
+	<title>Admin Signin Page</title>
 </head>
 
 <body>
@@ -14,15 +14,13 @@ if(!empty($_POST))
 {
 	if(!empty($_POST['username']) and !empty($_POST['password']))
 	{
-		$sql = "SELECT status FROM user WHERE username = '".$_POST['username']."' and password = '".$_POST['password']."' ";
+		$sql = "SELECT * FROM admin WHERE username = '".$_POST['username']."' and password = '".$_POST['password']."' ";
 
 		$result = $conn->query($sql);
 		if ($conn->error) echo 'Error: '.$conn->error;
     	else if ($result->num_rows == 1) {
-			$row = $result->fetch_assoc();
-			if($row["status"] == 'pending') echo 'User request is pending';
-			else if($row["status"] == 'rejected') echo 'User request is rejected by admin.';
-			else if($row["status"] == 'approved') header( 'Location: home.php' );
+			//$row = $result->fetch_assoc();
+			header( 'Location: users.php' );
 		} else {
     		echo "Error: Username does not match with the records in database <br>";
 			//exit;
@@ -45,9 +43,7 @@ if(!empty($_POST))
 		</p>
 		<input type="submit" name="submit" id="submit" value="Submit">
 	</form>
-	<p><a href="index.php">Go back to the index page:</a>
-	</p>
-	
+
 	
 </body>
 </html>
