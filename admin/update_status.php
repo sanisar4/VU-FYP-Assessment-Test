@@ -11,7 +11,7 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
-//header('location:users.php')
+
 ?>
 <br>
 <br>

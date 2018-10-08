@@ -1,4 +1,6 @@
 <?php
+error_reporting(9999999);
+session_start();
 
 $servername = "localhost";
 $username = "root";

@@ -1,4 +1,5 @@
 <?php require('connection.php'); ?>
+<?php if(isset($_SESSION['signin']) and $_SESSION['signin'] == TRUE) header( 'Location: home.php' ); ?>
 <!doctype html>
 <html>
 
@@ -23,7 +24,7 @@
 			if ( $conn->error )echo 'Error: ' . $conn->error; // DB query handler
 			else if ( $result->num_rows >= 1 )echo "Error: Please change username";
 			else {
-				$sql = "INSERT INTO user (username, email, password) VALUES ('" . $_POST[ 'username' ] . "', '" . $_POST[ 'email' ] . "', '" . $_POST[ 'password' ] . "')";
+				$sql = "INSERT INTO user (username, email, password, phoneno) VALUES ('" . $_POST[ 'username' ] . "', '" . $_POST[ 'email' ] . "', '" . $_POST[ 'password' ] . "' , '". $_POST['phoneno']."')";
 
 				if ( $conn->query( $sql ) === TRUE ) {
 					//$last_id = $conn->insert_id;
@@ -38,12 +39,16 @@
 	?>
 	<form id="form1" name="form1" method="post">
 		<p>
-			<label for="textfield">Username:</label>
+			<label for="username">Username:</label>
 			<input type="text" name="username" id="username">
 		</p>
 		<p>
 			<label for="email">Email:</label>
 			<input type="email" name="email" id="email">
+		</p>
+		<p>
+			<lable for="phoneno">Phone no:</lable>
+			<input type="phoneno" name="phoneno" id="phoneno">
 		</p>
 		<p>
 			<label for="password">Password:</label>

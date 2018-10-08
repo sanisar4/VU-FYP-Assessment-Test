@@ -1,4 +1,5 @@
 <?php require('connection.php'); ?>
+<?php if(isset($_SESSION['signin']) and $_SESSION['signin'] == TRUE) header( 'Location: home.php' ); ?>
 <!doctype html>
 <html>
 
@@ -20,9 +21,13 @@ if(!empty($_POST))
 		if ($conn->error) echo 'Error: '.$conn->error;
     	else if ($result->num_rows == 1) {
 			$row = $result->fetch_assoc();
-			if($row["status"] == 'pending') echo 'User request is pending';
+			if($row["status"] == 'pending') echo 'User request is pending.';
 			else if($row["status"] == 'rejected') echo 'User request is rejected by admin.';
-			else if($row["status"] == 'approved') header( 'Location: home.php' );
+			else if($row["status"] == 'approved') {
+				$_SESSION['signin'] = TRUE;
+			    $_SESSION['client_id'] = $row['id'];
+				header( 'Location: home.php' );
+			}
 		} else {
     		echo "Error: Username does not match with the records in database <br>";
 			//exit;
